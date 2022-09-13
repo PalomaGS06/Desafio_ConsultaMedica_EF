@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConsultaMedicaVet.Models
@@ -14,5 +15,7 @@ namespace ConsultaMedicaVet.Models
         [ForeignKey("TipoUsuario")]
         public int IdTipoUsuario { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public virtual ICollection<Medico> Medico { get; set; }
+        public virtual ICollection<Paciente> Paciente { get; set; }
     }
 }
