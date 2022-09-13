@@ -29,15 +29,14 @@ namespace ConsultaMedicaVet
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultaMedicaVet", Version = "v1" });
             });
 
             services.AddDbContext<ConsultaMedVetContext>( options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServer"))
-            );
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
         }
 

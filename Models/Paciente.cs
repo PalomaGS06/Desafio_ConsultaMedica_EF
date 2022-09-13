@@ -10,7 +10,7 @@ namespace ConsultaMedicaVet.Models
         public int Id { get; set; }
         [Required]
         public string Carteirinha { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; } = DateTime.Now;
         public bool Ativo { get; set; }
 
         [ForeignKey("Usuario")]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConsultaMedicaVet.Models
 {
-    public class Medico
+    public class Medico 
     {
         [Key]
         public int Id { get; set; }

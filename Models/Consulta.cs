@@ -9,7 +9,7 @@ namespace ConsultaMedicaVet.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public DateTime DataHora { get; set; }
+        public DateTime DataHora { get; set; } = DateTime.Now;
 
         [ForeignKey("Medico")]
         public int IdMedico { get; set; }
