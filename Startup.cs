@@ -1,4 +1,6 @@
 using ConsultaMedicaVet.Contexts;
+using ConsultaMedicaVet.Interfaces;
+using ConsultaMedicaVet.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +36,17 @@ namespace ConsultaMedicaVet
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultaMedicaVet", Version = "v1" });
             });
+
+
+            // Adiciona-se as injeções de dependência
+            services.AddTransient<ConsultaMedVetContext, ConsultaMedVetContext>();
+            services.AddTransient<IEspecialidadeRepository, EspecialidadeRepository>();
+            services.AddTransient<IConsultaRepository, ConsultaRepository>();
+            services.AddTransient<IMedicoRepository, MedicoRepository>();
+            services.AddTransient<IPacienteRepository, PacienteRepository>();
+            services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+          
 
             services.AddDbContext<ConsultaMedVetContext>( options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
