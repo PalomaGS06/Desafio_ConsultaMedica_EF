@@ -8,6 +8,8 @@ namespace ConsultaMedicaVet.Interfaces
     {
         Usuario Inserir(Usuario usuario);
         ICollection<Usuario> ListarTodosUsers();
+        ICollection<Usuario> ListarMedicosUsers();
+        ICollection<Usuario> ListarPacientesUsers();
         Usuario BuscarPorId(int id);
         void Alterar(Usuario usuario);
         void Excluir(Usuario usuario);

@@ -52,5 +52,26 @@ namespace ConsultaMedicaVet.Repositories
         {
             return ctx.Usuarios.ToList();
         }
+
+        public ICollection<Usuario> ListarMedicosUsers()
+        {
+            var medicos = ctx.Usuarios
+                   .Include(m => m.Medico)
+                   .ThenInclude(es => es.Especialidade)
+                   .Where(m => m.IdTipoUsuario == 1)
+                   .ToList();
+
+            return medicos;
+        }
+
+        public ICollection<Usuario> ListarPacientesUsers()
+        {
+            var pacientes = ctx.Usuarios
+                   .Include(p => p.Medico)
+                   .Where(p => p.IdTipoUsuario == 2)
+                   .ToList();
+
+            return pacientes;
+        }
     }
 }
