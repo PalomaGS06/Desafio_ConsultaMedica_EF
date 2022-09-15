@@ -18,6 +18,13 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
+        //verbo POST - Inserir/Cadastrar
+
+        /// <summary>
+        /// Cadastra/Inclui especialidades e seus respectivos Ids
+        /// </summary>
+        /// <param name="especialidade"> Dados das Especialidades</param>
+        /// <returns>Especialidade cadastrada!</returns>
         [HttpPost]
         public IActionResult Cadastrar(Especialidade especialidade)
         {
@@ -40,6 +47,12 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo GET - Buscar/Listar
+
+        /// <summary>
+        /// Lista/Busca todos as especialidades existentes no BD
+        /// </summary>
+        /// <returns>Lista de Especialidades </returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -60,6 +73,13 @@ namespace ConsultaMedicaVet.Controllers
             }
 
         }
+        //verbo GET - Buscar/Listar por ID
+
+        /// <summary>
+        /// Lista a especialidade por meio de seu Id
+        /// </summary>
+        /// <param name="id">Dados da especialidade selecionada</param>
+        /// <returns>Especialidade listada pelo ID</returns>
         [HttpGet("{id}")]
         public IActionResult BuscarEspecialidadePorID(int id)
         {
@@ -87,6 +107,14 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
+        //verbo PUT - Alterar/Atualizar
+
+        /// <summary>
+        /// Altera os dados da especialidade
+        /// </summary>
+        /// <param name="id">Id da especialidade </param>
+        /// <param name="especialidade">Dados da especialidade alterada</param>
+        /// <returns>Especialidade alterada</returns>
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Especialidade especialidade)
         {
@@ -126,7 +154,14 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo PATCH - Alterar parcialmente
 
+        /// <summary>
+        /// Altera alguns dos dados da especialidade
+        /// </summary>
+        /// <param name="id">Id selecionado para alteração</param>
+        /// <param name="patchMedico">Dado alterado</param>
+        /// <returns>Especialidade alterada</returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchEspecialidade)
         {
@@ -149,6 +184,13 @@ namespace ConsultaMedicaVet.Controllers
             return Ok(especialidade);
         }
 
+        //verbo DELETE - Excluir
+
+        /// <summary>
+        /// Deletar especialidade através de seu Id
+        /// </summary>
+        /// <param name="id">Id selecionado para exclusão</param>
+        /// <returns>Mensagem de exclusão</returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

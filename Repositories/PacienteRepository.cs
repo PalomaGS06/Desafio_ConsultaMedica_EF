@@ -57,6 +57,7 @@ namespace ConsultaMedicaVet.Repositories
         {
             var consultas = ctx.Paciente
                    .Include(c => c.Consulta)
+                   .Include(u => u.Usuario)
                    .ToList();
 
             return consultas;

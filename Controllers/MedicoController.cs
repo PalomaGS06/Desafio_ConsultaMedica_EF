@@ -18,6 +18,13 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
+        //verbo POST - Inserir/Cadastrar
+
+        /// <summary>
+        /// Cadastra/Inclui médicos e seus respectivos Ids
+        /// </summary>
+        /// <param name="medico"> Dados dos Médicos</param>
+        /// <returns>Médico cadastrado!</returns>
         [HttpPost]
         public IActionResult Cadastrar(Medico medico)
         {
@@ -40,6 +47,12 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo GET - Buscar/Listar
+
+        /// <summary>
+        /// Lista/Busca todos os médicos existentes no BD
+        /// </summary>
+        /// <returns>Lista de Médicos com consultas</returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -60,6 +73,14 @@ namespace ConsultaMedicaVet.Controllers
             }
 
         }
+
+        //verbo GET - Buscar/Listar por ID
+
+        /// <summary>
+        /// Lista o médico por meio de seu Id
+        /// </summary>
+        /// <param name="id">Dados do médico selecionado</param>
+        /// <returns>Médico listado pelo ID</returns>
         [HttpGet("{id}")]
         public IActionResult BuscarMedicoPorID(int id)
         {
@@ -87,6 +108,14 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
+        //verbo PUT - Alterar/Atualizar
+
+        /// <summary>
+        /// Altera os dados do médico
+        /// </summary>
+        /// <param name="id">Id do médico </param>
+        /// <param name="medico">Dados do médico alterado</param>
+        /// <returns>Médico alterado</returns>
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Medico medico)
         {
@@ -126,7 +155,14 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo PATCH - Alterar parcialmente
 
+        /// <summary>
+        /// Altera alguns dos dados do médico
+        /// </summary>
+        /// <param name="id">Id selecionado para alteração</param>
+        /// <param name="patchMedico">Dado alterado</param>
+        /// <returns>Médico alterado</returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchMedico)
         {
@@ -149,6 +185,13 @@ namespace ConsultaMedicaVet.Controllers
             return Ok(medico);
         }
 
+        //verbo DELETE - Excluir
+
+        /// <summary>
+        /// Deletar médico através de seu Id
+        /// </summary>
+        /// <param name="id">Id selecionado para exclusão</param>
+        /// <returns>Mensagem de exclusão</returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

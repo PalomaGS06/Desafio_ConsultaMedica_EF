@@ -18,6 +18,13 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
+        //verbo POST - Inserir/Cadastrar
+
+        /// <summary>
+        /// Cadastra/Inclui consulta e seus respectivos Ids
+        /// </summary>
+        /// <param name="consulta"> Dados das Consultas</param>
+        /// <returns>Consulta cadastrada!</returns>
         [HttpPost]
         public IActionResult Cadastrar(Consulta consulta)
         {
@@ -40,6 +47,12 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo GET - Buscar/Listar
+
+        /// <summary>
+        /// Lista/Busca todos as consultas existentes no BD
+        /// </summary>
+        /// <returns>Lista de consultas</returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -60,6 +73,14 @@ namespace ConsultaMedicaVet.Controllers
             }
 
         }
+
+        //verbo GET - Buscar/Listar por ID
+
+        /// <summary>
+        /// Lista a consulta por meio de seu Id
+        /// </summary>
+        /// <param name="id">Dados da consulta selecionada</param>
+        /// <returns>Consulta listada pelo ID</returns>
         [HttpGet("{id}")]
         public IActionResult BuscarConsultaPorID(int id)
         {
@@ -87,6 +108,14 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
+        //verbo PUT - Alterar/Atualizar
+
+        /// <summary>
+        /// Altera os dados da consulta
+        /// </summary>
+        /// <param name="id">Id da consulta </param>
+        /// <param name="consulta">Dados da consulta alterada</param>
+        /// <returns>Consulta alterada</returns>
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Consulta consulta)
         {
@@ -126,7 +155,14 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo PATCH - Alterar parcialmente
 
+        /// <summary>
+        /// Altera alguns dos dados da consulta
+        /// </summary>
+        /// <param name="id">Id selecionado para alteração</param>
+        /// <param name="patchConsulta">Dado alterado</param>
+        /// <returns>Consulta alterada</returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchConsulta)
         {
@@ -149,6 +185,13 @@ namespace ConsultaMedicaVet.Controllers
             return Ok(consulta);
         }
 
+        //verbo DELETE - Excluir
+
+        /// <summary>
+        /// Deletar consulta através de seu Id
+        /// </summary>
+        /// <param name="id">Id selecionado para exclusão</param>
+        /// <returns>Mensagem de exclusão</returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

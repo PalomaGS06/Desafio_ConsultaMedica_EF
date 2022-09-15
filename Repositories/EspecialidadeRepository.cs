@@ -51,7 +51,7 @@ namespace ConsultaMedicaVet.Repositories
         {
             var especialidade = ctx.Especialidade
                .Include(m => m.Medico)
-               .ThenInclude(u => u.IdUsuario)
+               .ThenInclude(u => u.Usuario)
                .ToList();
 
             return especialidade; // para listar todas as especialidades, é utilizada a biblioteca Linq

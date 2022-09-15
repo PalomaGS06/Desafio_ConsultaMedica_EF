@@ -18,27 +18,12 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
-        [HttpPost]
-        public IActionResult Cadastrar(TipoUsuario tipoUsuario)
-        {
+        //verbo GET - Buscar/Listar
 
-            try
-            {
-                var retorno = repositorio.Inserir(tipoUsuario);
-                return Ok(retorno);
-
-            }
-            catch (System.Exception e)
-            {        
-                return StatusCode(500, new
-                {
-                    Error = "Falha na transação!!",
-                    Message = e.Message,
-                });
-            }
-
-        }
-
+        /// <summary>
+        /// Lista/Busca todos os tipos de usuários existentes no BD
+        /// </summary>
+        /// <returns>Lista de tipos de usuários</returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -59,6 +44,14 @@ namespace ConsultaMedicaVet.Controllers
             }
 
         }
+
+        //verbo GET - Buscar/Listar por ID
+
+        /// <summary>
+        /// Lista o tipo de usuário por meio de seu Id
+        /// </summary>
+        /// <param name="id">Dados do tipo de usuário selecionado</param>
+        /// <returns>Tipo de usuário listado pelo ID</returns>
         [HttpGet("{id}")]
         public IActionResult BuscarTipoUsuarioPorID(int id)
         {
@@ -86,6 +79,15 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
+        //verbo PUT - Alterar/Atualizar
+
+        /// <summary>
+        /// Altera o tipo de usuário
+        /// </summary>
+        /// <param name="id">Id do tipo de usuário </param>
+        /// <param name="tipoUsuario">Tipo de usuário alterado</param>
+        /// <returns>Tipo de usuário alterado</returns>
+        /// 
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, TipoUsuario tipoUsuario)
         {
@@ -124,58 +126,6 @@ namespace ConsultaMedicaVet.Controllers
             }
 
         }
-
-
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchTipoUsuario)
-        {
-            if (patchTipoUsuario == null)
-            {
-                return BadRequest();
-            }
-
-            // Temos que buscar o objeto
-            var tipoUsuario = repositorio.BuscarPorId(id); //tipoUsuario encontrado
-            if (tipoUsuario == null)
-            {
-                return NotFound(new
-                {
-                    Message = "Tipo de usuário não encontrado!!"
-                });
-            }
-
-            repositorio.AlterarParcialmente(patchTipoUsuario, tipoUsuario);
-            return Ok(tipoUsuario);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Excluir(int id)
-        {
-            try
-            {
-                var busca = repositorio.BuscarPorId(id);
-                if (busca == null)
-                {
-                    return NotFound(new
-                    {
-                        Message = "Tipo de usuário não encontrado!!"
-                    });
-                }
-
-                repositorio.Excluir(busca);
-
-                return NoContent(); // Status 204 de sucesso
-
-            }
-            catch (System.Exception e)
-            {
-                return StatusCode(500, new
-                {
-                    Error = "Falha no servidor!!",
-                    Message = e.Message,
-                });
-            }
-
-        }
+       
     }
 }

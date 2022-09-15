@@ -18,6 +18,13 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
+        //verbo POST - Inserir/Cadastrar
+
+        /// <summary>
+        /// Cadastra/Inclui usuarios e seus respectivos Ids
+        /// </summary>
+        /// <param name="usuario"> Dados dos Usuários</param>
+        /// <returns>Usuário cadastrado!</returns>
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
@@ -40,6 +47,12 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo GET - Buscar/Listar
+
+        /// <summary>
+        /// Lista/Busca todos os usuarios existentes no BD
+        /// </summary>
+        /// <returns>Lista de Usuários</returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -62,6 +75,13 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo GET - Buscar/Listar por ID
+
+        /// <summary>
+        /// Lista o usuario por meio de seu Id
+        /// </summary>
+        /// <param name="id">Dados do usuario selecionado</param>
+        /// <returns>Usuário listado pelo ID</returns>
         [HttpGet("{id}")]
         public IActionResult BuscarUsuarioPorID(int id)
         {
@@ -89,7 +109,14 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
-        [HttpGet]
+        //verbo GET - Buscar/Listar por médico
+
+        /// <summary>
+        /// Lista o usuário médico por meio de seu Id
+        /// </summary>
+        /// <returns>Médico listado</returns>
+        /// 
+        [HttpGet("{Medico}")]
         public IActionResult ListarMedico()
         {
             try
@@ -109,7 +136,13 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
-        [HttpGet]
+        //verbo GET - Buscar/Listar por paciente
+
+        /// <summary>
+        /// Lista o usuário paciente por meio de seu Id
+        /// </summary>
+        /// <returns>Paciente listado</returns>
+        [HttpGet("{Paciente}")]
         public IActionResult ListarPaciente()
         {
             try
@@ -129,6 +162,14 @@ namespace ConsultaMedicaVet.Controllers
             }
         }
 
+        //verbo PUT - Alterar/Atualizar
+
+        /// <summary>
+        /// Altera os dados do usuario
+        /// </summary>
+        /// <param name="id">Id do usuario </param>
+        /// <param name="usuario">Dados do usuario alterado</param>
+        /// <returns>Usuário alterado</returns>
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Usuario usuario)
         {
@@ -168,6 +209,14 @@ namespace ConsultaMedicaVet.Controllers
 
         }
 
+        //verbo PATCH - Alterar parcialmente
+
+        /// <summary>
+        /// Altera alguns dos dados do usuario
+        /// </summary>
+        /// <param name="id">Id selecionado para alteração</param>
+        /// <param name="patchUsuario">Dado alterado</param>
+        /// <returns>Usuário alterado</returns>
 
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchUsuario)
@@ -191,6 +240,13 @@ namespace ConsultaMedicaVet.Controllers
             return Ok(usuario);
         }
 
+        //verbo DELETE - Excluir
+
+        /// <summary>
+        /// Deletar usuario através de seu Id
+        /// </summary>
+        /// <param name="id">Id selecionado para exclusão</param>
+        /// <returns>Mensagem de exclusão</returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {
