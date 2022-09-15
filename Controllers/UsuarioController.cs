@@ -59,7 +59,9 @@ namespace ConsultaMedicaVet.Controllers
 
             }
 
+
         }
+
         [HttpGet("{id}")]
         public IActionResult BuscarUsuarioPorID(int id)
         {
@@ -73,6 +75,46 @@ namespace ConsultaMedicaVet.Controllers
                         Message = "Usuario não achado na lista !!"
                     });
                 }
+
+                return Ok(retorno);
+
+            }
+            catch (System.Exception e)
+            {
+                return StatusCode(500, new
+                {
+                    Error = "Falha na transação !!",
+                    Message = e.Message,
+                });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ListarMedico()
+        {
+            try
+            {
+                var retorno = repositorio.ListarMedicosUsers();
+                
+                return Ok(retorno);
+
+            }
+            catch (System.Exception e)
+            {
+                return StatusCode(500, new
+                {
+                    Error = "Falha na transação !!",
+                    Message = e.Message,
+                });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ListarPaciente()
+        {
+            try
+            {
+                var retorno = repositorio.ListarPacientesUsers();
 
                 return Ok(retorno);
 
