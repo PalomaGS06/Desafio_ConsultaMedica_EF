@@ -31,12 +31,18 @@ namespace ConsultaMedicaVet.Repositories
 
         public Paciente BuscarPorId(int id)
         {
-            return ctx.Paciente.Find(id);
+            var pacienteId = ctx.Paciente
+               .Include(u => u.IdUsuario)
+               .FirstOrDefault(m => m.Id == id);
+
+            return pacienteId;
         }
 
         public void Excluir(Paciente paciente)
         {
             ctx.Paciente.Remove(paciente);
+            var usuarioP = ctx.Usuarios.Find(paciente.IdUsuario);
+            ctx.Usuarios.Remove(usuarioP);
             ctx.SaveChanges();
         }
 

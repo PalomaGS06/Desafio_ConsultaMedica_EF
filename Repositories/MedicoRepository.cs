@@ -34,12 +34,19 @@ namespace ConsultaMedicaVet.Repositories
 
         public Medico BuscarPorId(int id)
         {
-            return ctx.Medico.Find(id);
+            var medicoId = ctx.Medico
+               .Include(e => e.IdEspecialidade)
+               .Include(u => u.IdUsuario)
+               .FirstOrDefault(m => m.Id == id);
+
+            return medicoId;
         }
 
         public void Excluir(Medico medico)
         {
             ctx.Medico.Remove(medico);
+            var usuarioM = ctx.Usuarios.Find(medico.IdUsuario);
+            ctx.Usuarios.Remove(usuarioM);
             ctx.SaveChanges();
         }
 
