@@ -24,6 +24,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
+                paciente.Usuario.IdTipoUsuario = 2;  // O paciente sempre será com o Id 2, não importando qual valor o usuario digitar
                 var retorno = repositorio.Inserir(paciente);
                 return Ok(retorno);
 
