@@ -51,7 +51,12 @@ namespace ConsultaMedicaVet.Repositories
 
         public ICollection<Consulta> ListarTodas()
         {
-            return ctx.Consultas.ToList();
+            var consultar = ctx.Consultas
+                .Include(p => p.IdPaciente)
+                .Include(m => m.IdMedico)
+                .ToList();
+
+            return consultar;
         }
     }
 }
