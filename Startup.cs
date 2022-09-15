@@ -13,7 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ConsultaMedicaVet
@@ -35,8 +37,16 @@ namespace ConsultaMedicaVet
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultaMedicaVet", Version = "v1" });
+
+
+                // Adicionar configurações extras da documentação, para ler os XMLs
+                //Combinar informações, gerando o Assembly
+                var xmlArquivo = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlArquivo));
+
             });
 
+     
 
             // Adiciona-se as injeções de dependência
             services.AddTransient<ConsultaMedVetContext, ConsultaMedVetContext>();

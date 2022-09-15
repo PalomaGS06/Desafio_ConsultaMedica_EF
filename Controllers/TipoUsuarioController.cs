@@ -24,6 +24,7 @@ namespace ConsultaMedicaVet.Controllers
         /// Lista/Busca todos os tipos de usuários existentes no BD
         /// </summary>
         /// <returns>Lista de tipos de usuários</returns>
+        
         [HttpGet]
         public IActionResult Listar()
         {
@@ -52,6 +53,7 @@ namespace ConsultaMedicaVet.Controllers
         /// </summary>
         /// <param name="id">Dados do tipo de usuário selecionado</param>
         /// <returns>Tipo de usuário listado pelo ID</returns>
+        
         [HttpGet("{id}")]
         public IActionResult BuscarTipoUsuarioPorID(int id)
         {
@@ -87,7 +89,7 @@ namespace ConsultaMedicaVet.Controllers
         /// <param name="id">Id do tipo de usuário </param>
         /// <param name="tipoUsuario">Tipo de usuário alterado</param>
         /// <returns>Tipo de usuário alterado</returns>
-        /// 
+         
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, TipoUsuario tipoUsuario)
         {
