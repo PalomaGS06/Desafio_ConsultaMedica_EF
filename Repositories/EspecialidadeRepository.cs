@@ -49,7 +49,12 @@ namespace ConsultaMedicaVet.Repositories
 
         public ICollection<Especialidade> ListarTodas()
         {
-            return ctx.Especialidade.ToList(); // para listar todas as especialidades, é utilizada a biblioteca Linq
+            var especialidade = ctx.Especialidade
+               .Include(m => m.Medico)
+               .ThenInclude(u => u.IdUsuario)
+               .ToList();
+
+            return especialidade; // para listar todas as especialidades, é utilizada a biblioteca Linq
         }
     }
 }
