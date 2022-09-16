@@ -112,11 +112,11 @@ namespace ConsultaMedicaVet.Controllers
         //verbo GET - Buscar/Listar por médico
 
         /// <summary>
-        /// Lista o usuário médico por meio de seu Id
+        /// Lista o usuário médico
         /// </summary>
         /// <returns>Médico listado</returns>
         /// 
-        [HttpGet("{Medico}")]
+        [HttpGet("Medico")]
         public IActionResult ListarMedico()
         {
             try
@@ -139,10 +139,10 @@ namespace ConsultaMedicaVet.Controllers
         //verbo GET - Buscar/Listar por paciente
 
         /// <summary>
-        /// Lista o usuário paciente por meio de seu Id
+        /// Lista o usuário paciente 
         /// </summary>
         /// <returns>Paciente listado</returns>
-        [HttpGet("{Paciente}")]
+        [HttpGet("Paciente")]
         public IActionResult ListarPaciente()
         {
             try
