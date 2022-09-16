@@ -54,8 +54,14 @@ namespace ConsultaMedicaVet.Repositories
         public ICollection<Consulta> ListarTodas()
         {
             var consultas = ctx.Consultas   
-                .Include(p => p.IdPaciente)  // inclui o Id do Paciente para ser exibido
-                .Include(m => m.IdMedico)    // inclui o Id do Médico para ser exibido
+                .Include(p => p.Paciente)  // inclui o Paciente para ser exibido
+                    .ThenInclude(u => u.Usuario)
+                        .ThenInclude(tu => tu.TipoUsuario)
+                .Include(m => m.Medico)    // inclui o Médico para ser exibido
+                    .ThenInclude(u => u.Usuario)
+                        .ThenInclude(tu => tu.TipoUsuario)
+                .Include(m => m.Medico)
+                  .ThenInclude(e => e.Especialidade)
                 .ToList();  //lista todos as consultas com os dados dos pacientes e médicos
 
             return consultas;    // retorna o resultado

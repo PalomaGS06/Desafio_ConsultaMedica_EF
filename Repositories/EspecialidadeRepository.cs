@@ -53,7 +53,7 @@ namespace ConsultaMedicaVet.Repositories
         {
             var especialidade = ctx.Especialidade
                .Include(m => m.Medico) // inclui a classe Médico para ser exibido
-               .ThenInclude(u => u.Usuario) // e inclui o Usuario, sendo seu id pertencente à classe Médico
+                .ThenInclude(u => u.Usuario) // e inclui o Usuario, sendo seu id pertencente à classe Médico
                .ToList();
 
             return especialidade; // para listar todas as especialidades, é utilizada a biblioteca Linq

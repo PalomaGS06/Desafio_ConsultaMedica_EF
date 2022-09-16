@@ -59,7 +59,7 @@ namespace ConsultaMedicaVet.Repositories
         {
             var medicos = ctx.Usuarios
                    .Include(m => m.Medico) // inclui a classe Medico para ser exibida
-                   .ThenInclude(es => es.Especialidade)  // inclui a classe Especialidade para ser exibida
+                    .ThenInclude(es => es.Especialidade)  // inclui a classe Especialidade para ser exibida
                    .Where(m => m.IdTipoUsuario == 1) // quando o id do tipo de usuario for igual a 1 (que são os médicos)
                    .ToList();
 
