@@ -20,5 +20,5 @@
 - Controllers;
 - Models;
 - Bibliotecas NewtonSoftJson, EntityFrameworkCore.Design, EntityFrameworkCore.SqlServer, EntityFrameworkCore.Tools;
-- SQL Server;
-  - DML.
+- SQL Server:
+  - DML
