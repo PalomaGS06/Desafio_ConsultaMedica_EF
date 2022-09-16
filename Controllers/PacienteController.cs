@@ -41,7 +41,7 @@ namespace ConsultaMedicaVet.Controllers
        
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!",
+                    Error = "Falha na transação!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -67,7 +67,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha de transação!",
+                    Error = "Falha de transação!",  // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -92,7 +92,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Paciente não achado na lista!"
+                        Message = "Paciente não achado na lista!"  // mensagem de erro
                     });
                 }
 
@@ -103,7 +103,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!",
+                    Error = "Falha na transação!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -135,21 +135,21 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Paciente não encontrado!"
+                        Message = "Paciente não encontrado!"  // mensagem de erro
                     });
                 }
 
                 //Altera efetivamente o paciente!
                 repositorio.Alterar(paciente);
 
-                return NoContent();
+                return NoContent();  //retorna o código 404 de sucesso que será exibido
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!",
+                    Error = "Falha na transação!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -169,7 +169,7 @@ namespace ConsultaMedicaVet.Controllers
         {
             if (patchPaciente == null)
             {
-                return BadRequest();
+                return BadRequest();  // mensagem de erro padrão
             }
 
             // Temos que buscar o objeto
@@ -178,7 +178,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return NotFound(new
                 {
-                    Message = "Paciente não encontrado!"
+                    Message = "Paciente não encontrado!"  // mensagem de erro
                 });
             }
 
@@ -203,7 +203,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Paciente não encontrado!"
+                        Message = "Paciente não encontrado!"  // mensagem de erro
                     });
                 }
 
@@ -216,7 +216,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!",
+                    Error = "Falha na transação!",  // mensagem de erro
                     Message = e.Message,
                 });
             }

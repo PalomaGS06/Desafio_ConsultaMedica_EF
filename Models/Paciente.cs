@@ -7,17 +7,19 @@ namespace ConsultaMedicaVet.Models
 {
     public class Paciente
     {
-        [Key]
+        // Na classe Model, haverá todos os atributos/colunas que compõe a classe Consulta
+
+        [Key]  // primary key 
         public int Id { get; set; }
-        [Required]
+        [Required]   // campo obrigatório
         public string Carteirinha { get; set; }
         public DateTime DataNascimento { get; set; } = DateTime.Now;
         public bool Ativo { get; set; }
 
-        [ForeignKey("Usuario")]
+        [ForeignKey("Usuario")] // foreign key IdUsuario
         public int IdUsuario { get; set; }
-        public Usuario Usuario { get; set; }
-        public virtual ICollection<Consulta> Consulta { get; set; }
+        public Usuario Usuario { get; set; }  // classe Usuario como objeto
+        public virtual ICollection<Consulta> Consulta { get; set; }  // lista de Consultas 
 
     }
 }

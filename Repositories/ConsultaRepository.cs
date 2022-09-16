@@ -19,44 +19,46 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Alterar(Consulta consultas)
         {
-            ctx.Entry(consultas).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(consultas).State = EntityState.Modified; // mostra o estado da consulta e utiliza-se a função EntityState
+                                                               // para fazer a alteração
+            ctx.SaveChanges(); // salva as alterações
         }
 
         public void AlterarParcialmente(JsonPatchDocument patchConsulta, Consulta consultas)
         {
 
-            patchConsulta.ApplyTo(consultas);
-            ctx.Entry(consultas).State = EntityState.Modified;
-            ctx.SaveChanges();
+            patchConsulta.ApplyTo(consultas); // aplicar o Patch no atributo consultas
+            ctx.Entry(consultas).State = EntityState.Modified; // mostra o estado da consulta e utiliza-se a função EntityState
+                                                               // para fazer a alteração
+            ctx.SaveChanges();// salva as alterações
         }
 
         public Consulta BuscarPorId(int id)
         {
-            return ctx.Consultas.Find(id);
+            return ctx.Consultas.Find(id); // procura pelo id
         }
 
         public void Excluir(Consulta consultas)
         {
-            ctx.Consultas.Remove(consultas);
-            ctx.SaveChanges(); 
+            ctx.Consultas.Remove(consultas);     //remove o atributo no parâmetro da função Remove
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public Consulta Inserir(Consulta consultas)
         {
-            ctx.Consultas.Add(consultas);
-            ctx.SaveChanges();
-            return consultas;
+            ctx.Consultas.Add(consultas);    // adiciona dentro da entidade
+            ctx.SaveChanges();   // salva as alterações
+            return consultas;   // retorna o resultado
         }
 
         public ICollection<Consulta> ListarTodas()
         {
-            var consultas = ctx.Consultas
-                .Include(p => p.IdPaciente)
-                .Include(m => m.IdMedico)
-                .ToList();
+            var consultas = ctx.Consultas   
+                .Include(p => p.IdPaciente)  // inclui o Id do Paciente para ser exibido
+                .Include(m => m.IdMedico)    // inclui o Id do Médico para ser exibido
+                .ToList();  //lista todos as consultas com os dados dos pacientes e médicos
 
-            return consultas;
+            return consultas;    // retorna o resultado
         }
     }
 }

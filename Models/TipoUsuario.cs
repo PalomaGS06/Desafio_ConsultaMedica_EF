@@ -4,9 +4,11 @@ namespace ConsultaMedicaVet.Models
 {
     public class TipoUsuario
     {
-        [Key]
+        // Na classe Model, haverá todos os atributos/colunas que compõe a classe Consulta
+
+        [Key]   // primary key 
         public int Id { get; set; }
-        [Required]
+        [Required]  // campo obrigatório
         public string Tipo { get; set; }
     }
 }

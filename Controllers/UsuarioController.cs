@@ -40,7 +40,7 @@ namespace ConsultaMedicaVet.Controllers
                 // return BadRequest(e.Message);            
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -66,7 +66,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha de transação !!",
+                    Error = "Falha de transação !!",  // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -92,7 +92,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Usuario não achado na lista !!"
+                        Message = "Usuario não achado na lista !!"  // mensagem de erro
                     });
                 }
 
@@ -103,7 +103,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",   // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -130,7 +130,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",    // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -156,7 +156,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",      // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -187,8 +187,8 @@ namespace ConsultaMedicaVet.Controllers
                 if (retorno == null)
                 {
                     return NotFound(new
-                    {
-                        Message = "Usuario não encontrado !!"
+                    {   
+                        Message = "Usuario não encontrado !!"     // mensagem de erro
                     });
                 }
 
@@ -202,7 +202,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",      // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -232,7 +232,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return NotFound(new
                 {
-                    Message = "Usuário não encontrado !!"
+                    Message = "Usuário não encontrado !!"     // mensagem de erro
                 });
             }
 
@@ -257,7 +257,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Usuário não encontrado !!"
+                        Message = "Usuário não encontrado !!"     // mensagem de erro
                     });
                 }
 
@@ -270,7 +270,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!!",
+                    Error = "Falha na transação!!",   // mensagem de erro
                     Message = e.Message,
                 });
             }

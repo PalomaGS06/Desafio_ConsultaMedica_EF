@@ -18,40 +18,42 @@ namespace ConsultaMedicaVet.Repositories
         }
         public void Alterar(Especialidade especialidade)
         {
-            ctx.Entry(especialidade).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(especialidade).State = EntityState.Modified;// mostra o estado da consulta e utiliza-se a função EntityState
+                                                                  // para fazer a alteração
+            ctx.SaveChanges(); // salva as alterações
         }
 
         public void AlterarParcialmente(JsonPatchDocument patchEspecialidade, Especialidade especialidade)
         {
-            patchEspecialidade.ApplyTo(especialidade);
-            ctx.Entry(especialidade).State = EntityState.Modified;
-            ctx.SaveChanges();
+            patchEspecialidade.ApplyTo(especialidade);  // aplicar o Patch no atributo especialidade
+            ctx.Entry(especialidade).State = EntityState.Modified;  // mostra o estado da consulta e utiliza-se a função EntityState
+                                                                    // para fazer a alteração
+            ctx.SaveChanges(); // salva as alterações
         }
 
         public Especialidade BuscarPorId(int id)
         {
-            return ctx.Especialidade.Find(id);
+            return ctx.Especialidade.Find(id);  // procura pelo id
         }
 
         public void Excluir(Especialidade especialidade)
         {
-            ctx.Especialidade.Remove(especialidade);
-            ctx.SaveChanges();
+            ctx.Especialidade.Remove(especialidade);   //remove o atributo no parâmetro da função Remove
+            ctx.SaveChanges(); // salva as alterações
         }
 
         public Especialidade Inserir(Especialidade especialidade)
         {
-            ctx.Especialidade.Add(especialidade);
-            ctx.SaveChanges();
-            return especialidade;
+            ctx.Especialidade.Add(especialidade);  // adiciona o que foi inserido dentro da entidade
+            ctx.SaveChanges(); // salva as alterações
+            return especialidade;  // retorna o resultado
         }
 
         public ICollection<Especialidade> ListarTodas()
         {
             var especialidade = ctx.Especialidade
-               .Include(m => m.Medico)
-               .ThenInclude(u => u.Usuario)
+               .Include(m => m.Medico) // inclui a classe Médico para ser exibido
+               .ThenInclude(u => u.Usuario) // e inclui o Usuario, sendo seu id pertencente à classe Médico
                .ToList();
 
             return especialidade; // para listar todas as especialidades, é utilizada a biblioteca Linq

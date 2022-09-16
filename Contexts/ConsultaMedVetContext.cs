@@ -11,6 +11,7 @@ namespace ConsultaMedicaVet.Contexts
 
         }
 
+        // adicionando cada classe como entidades e suas instâncias de contexto
         public DbSet<Consulta> Consultas { get; set; }
         public DbSet<Especialidade> Especialidade { get; set; }
         public DbSet<Medico> Medico { get; set; }

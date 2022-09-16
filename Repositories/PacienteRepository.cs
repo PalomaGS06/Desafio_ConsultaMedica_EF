@@ -18,21 +18,22 @@ namespace ConsultaMedicaVet.Repositories
         }
         public void Alterar(Paciente paciente)
         {
-            ctx.Entry(paciente).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(paciente).State = EntityState.Modified;   // mostra o estado da consulta e utiliza-se a função EntityState
+                                                                // para fazer a alteração
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public void AlterarParcialmente(JsonPatchDocument patchPaciente, Paciente paciente)
         {
-            patchPaciente.ApplyTo(paciente);
+            patchPaciente.ApplyTo(paciente);    // aplicar o Patch no atributo paciente
             ctx.Entry(paciente).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public Paciente BuscarPorId(int id)
         {
-            var pacienteId = ctx.Paciente
-               .Include(u => u.IdUsuario)
+            var pacienteId = ctx.Paciente 
+               .Include(u => u.IdUsuario)   //inclui o campo  IdUsuario
                .FirstOrDefault(m => m.Id == id);
 
             return pacienteId;
@@ -40,24 +41,25 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Excluir(Paciente paciente)
         {
-            ctx.Paciente.Remove(paciente);
-            var usuarioP = ctx.Usuarios.Find(paciente.IdUsuario);
-            ctx.Usuarios.Remove(usuarioP);
-            ctx.SaveChanges();
+            ctx.Paciente.Remove(paciente);    //remove o atributo no parâmetro da função Remove
+            var usuarioP = ctx.Usuarios.Find(paciente.IdUsuario); // a função Find vai procurar em qual
+                                                                  // usuario o paciente selecionado para a exclusão está
+            ctx.Usuarios.Remove(usuarioP);  //remove o usuario paciente
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public Paciente Inserir(Paciente paciente)
         {
-            ctx.Paciente.Add(paciente);
-            ctx.SaveChanges();
+            ctx.Paciente.Add(paciente);   // adiciona o que foi inserido dentro da entidade
+            ctx.SaveChanges();  // salva as alterações
             return paciente;
         }
 
         public ICollection<Paciente> ListarTodos()
         {
-            var consultas = ctx.Paciente
-                   .Include(c => c.Consulta)
-                   .Include(u => u.Usuario)
+            var consultas = ctx.Paciente 
+                   .Include(c => c.Consulta)  // inclui a classe Consulta para ser exibida
+                   .Include(u => u.Usuario)  // inclui a classe Usuario para ser exibido
                    .ToList();
 
             return consultas;

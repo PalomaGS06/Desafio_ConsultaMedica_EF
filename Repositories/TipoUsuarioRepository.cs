@@ -19,38 +19,39 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Alterar(TipoUsuario tipoUsuario)
         {
-            ctx.Entry(tipoUsuario).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(tipoUsuario).State = EntityState.Modified; // mostra o estado da consulta e utiliza-se a função EntityState
+                                                                 // para fazer a alteração
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public void AlterarParcialmente(JsonPatchDocument patchTipoUsuario, TipoUsuario tipoUsuario)
         {
-            patchTipoUsuario.ApplyTo(tipoUsuario);
+            patchTipoUsuario.ApplyTo(tipoUsuario);   // aplicar o Patch no atributo tipoUsuario
             ctx.Entry(tipoUsuario).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public TipoUsuario BuscarPorId(int id)
         {
-            return ctx.TipoUsuario.Find(id);
+            return ctx.TipoUsuario.Find(id); //procura pelo id
         }
 
         public void Excluir(TipoUsuario tipoUsuario)
         {
-            ctx.TipoUsuario.Remove(tipoUsuario);
-            ctx.SaveChanges();
+            ctx.TipoUsuario.Remove(tipoUsuario);   //remove o atributo no parâmetro da função Remove
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public TipoUsuario Inserir(TipoUsuario tipoUsuario)
         {
-            ctx.TipoUsuario.Add(tipoUsuario);
-            ctx.SaveChanges();
+            ctx.TipoUsuario.Add(tipoUsuario);  // adiciona o que foi inserido dentro da entidade
+            ctx.SaveChanges();  // salva as alterações
             return tipoUsuario;
         }
 
         public ICollection<TipoUsuario> ListarTodos()
         {
-            return ctx.TipoUsuario.ToList();
+            return ctx.TipoUsuario.ToList(); //Procura todos os tipos de usuários existentes
         }
     }
 }

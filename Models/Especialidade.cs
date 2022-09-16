@@ -5,12 +5,14 @@ namespace ConsultaMedicaVet.Models
 {
     public class Especialidade
     {
-        [Key]
+        // Na classe Model, haverá todos os atributos/colunas que compõe a classe Consulta
+
+        [Key]  // primary key
         public int Id { get; set; }
-        [Required]
+        [Required]  // campo obrigatório
         public string Categoria { get; set; }
 
-        public virtual ICollection<Medico> Medico { get; set; }
+        public virtual ICollection<Medico> Medico { get; set; }  // lista de médicos 
 
 
     }

@@ -40,7 +40,7 @@ namespace ConsultaMedicaVet.Controllers
             {        
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação...",
+                    Error = "Falha na transação...",   // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -58,7 +58,7 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var retorno = repositorio.ListarTodos();
+                var retorno = repositorio.ListarTodos();   // retorna a lista de todos medicos
                 return Ok(retorno);
 
             }
@@ -66,7 +66,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha de transação...",
+                    Error = "Falha de transação...",   // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -87,11 +87,11 @@ namespace ConsultaMedicaVet.Controllers
             try
             {
                 var retorno = repositorio.BuscarPorId(id);
-                if (retorno == null)
+                if (retorno == null)   // caso o id for igual a 0
                 {
                     return NotFound(new
                     {
-                        Message = "Médico não achado na lista..."
+                        Message = "Médico não achado na lista..."   // mensagem de erro
                     });
                 }
 
@@ -102,7 +102,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação...",
+                    Error = "Falha na transação...",   // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -123,9 +123,9 @@ namespace ConsultaMedicaVet.Controllers
             {
 
                 //Verificar se os ids batem!
-                if (id != medico.Id)
+                if (id != medico.Id)    // caso o id for diferente de um Id existente
                 {
-                    return BadRequest();
+                    return BadRequest();        // resposta de erro padrão
                 }
 
                 //Verificar se o id existe no banco!
@@ -134,21 +134,21 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Médico não encontrado..."
+                        Message = "Médico não encontrado..."   // mensagem de erro
                     });
                 }
 
                 //Altera efetivamente o médico!
                 repositorio.Alterar(medico);
 
-                return NoContent();
+                return NoContent();    // caso contrário, o código 404 de sucesso será exibido
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação...",
+                    Error = "Falha na transação...",   // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -177,12 +177,12 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return NotFound(new
                 {
-                    Message = "Médico não encontrado..."
+                    Message = "Médico não encontrado..."   // mensagem de erro
                 });
             }
 
             repositorio.AlterarParcialmente(patchMedico, medico);
-            return Ok(medico);
+            return Ok(medico);   // retorna o medico alterado
         }
 
         //verbo DELETE - Excluir
@@ -197,25 +197,25 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var busca = repositorio.BuscarPorId(id);
+                var busca = repositorio.BuscarPorId(id);     //deleta um medico digitando o id dele
                 if (busca == null)
                 {
                     return NotFound(new
                     {
-                        Message = "Médico não encontrado..."
+                        Message = "Médico não encontrado..."    // mensagem de erro
                     });
                 }
 
                 repositorio.Excluir(busca);
 
-                return NoContent(); // Status 204 de sucesso
+                return NoContent();     // Status 204 de sucesso
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação...",
+                    Error = "Falha na transação...",   // mensagem de erro
                     Message = e.Message,
                 });
             }

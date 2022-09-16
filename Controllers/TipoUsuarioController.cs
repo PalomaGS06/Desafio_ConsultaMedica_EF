@@ -38,7 +38,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha no servidor!!",
+                    Error = "Falha no servidor!!",  // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -64,7 +64,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Tipo de usuario não encontrado na lista!!"
+                        Message = "Tipo de usuario não encontrado na lista!!"  // mensagem de erro
                     });
                 }
 
@@ -75,7 +75,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!!",
+                    Error = "Falha na transação!!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -99,7 +99,7 @@ namespace ConsultaMedicaVet.Controllers
                 //Verificar se os ids batem!
                 if (id != tipoUsuario.Id)
                 {
-                    return BadRequest();
+                    return BadRequest(); // erro padrão de resposta
                 }
 
                 //Verificar se o id existe no banco!
@@ -108,7 +108,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Tipo de usuario não encontrado!!"
+                        Message = "Tipo de usuario não encontrado!!"  // mensagem de erro
                     });
                 }
 
@@ -122,7 +122,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha no servidor!!",
+                    Error = "Falha no servidor!!",  // mensagem de erro
                     Message = e.Message,
                 });
             }

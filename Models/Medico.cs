@@ -6,18 +6,18 @@ namespace ConsultaMedicaVet.Models
 {
     public class Medico 
     {
-        [Key]
+        [Key]  // primary key 
         public int Id { get; set; }
-        [Required]
+        [Required]   // campo obrigatório
         public string CRM { get; set; }
 
-        [ForeignKey("Especialidade")]
+        [ForeignKey("Especialidade")]  // foreign key IdEspecialidade
         public int IdEspecialidade { get; set; }
-        public Especialidade Especialidade { get; set; }
+        public Especialidade Especialidade { get; set; }  // classe Especialidade como objeto
 
-        [ForeignKey("Usuario")]
+        [ForeignKey("Usuario")]   // foreign key IdUsuario
         public int IdUsuario { get; set; }
-        public Usuario Usuario { get; set; }
-        public virtual ICollection<Consulta> Consulta { get; set; }
+        public Usuario Usuario { get; set; }  // classe Usuario como objeto
+        public virtual ICollection<Consulta> Consulta { get; set; }  // lista de consultas 
     }
 }

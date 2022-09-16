@@ -31,7 +31,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
-                var retorno = repositorio.Inserir(especialidade);
+                var retorno = repositorio.Inserir(especialidade);  // retorno dos dados inseridos
                 return Ok(retorno);
 
             }
@@ -40,7 +40,7 @@ namespace ConsultaMedicaVet.Controllers
                 // return BadRequest(e.Message);            
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -58,7 +58,7 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var retorno = repositorio.ListarTodas();
+                var retorno = repositorio.ListarTodas();   // retorna a lista de todas consultas
                 return Ok(retorno);
 
             }
@@ -66,7 +66,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha no sistema !!",
+                    Error = "Falha no sistema !!",  // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -85,12 +85,12 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var retorno = repositorio.BuscarPorId(id);
-                if (retorno == null)
+                var retorno = repositorio.BuscarPorId(id);  // retorna a lista dos dados da consulta buscada pelo Id
+                if (retorno == null)    // caso o id for igual a 0 
                 {
                     return NotFound(new
                     {
-                        Message = "Especialidade não encontrada na lista !!"
+                        Message = "Especialidade não encontrada na lista !!" // mensagem de erro
                     });
                 }
 
@@ -101,7 +101,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",    // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -122,7 +122,7 @@ namespace ConsultaMedicaVet.Controllers
             {
 
                 //Verificar se os ids batem!
-                if (id != especialidade.Id)
+                if (id != especialidade.Id)  // caso o id for diferente de um Id existente
                 {
                     return BadRequest();
                 }
@@ -133,21 +133,21 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return NotFound(new
                     {
-                        Message = "Especialidade não encontrada !!"
+                        Message = "Especialidade não encontrada !!"    // mensagem de erro
                     });
                 }
 
                 //Altera efetivamente a especialidade!
                 repositorio.Alterar(especialidade);
 
-                return NoContent();
+                return NoContent();  // caso contrário, o código 404 de sucesso será exibido
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",    // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -160,14 +160,14 @@ namespace ConsultaMedicaVet.Controllers
         /// Altera alguns dos dados da especialidade
         /// </summary>
         /// <param name="id">Id selecionado para alteração</param>
-        /// <param name="patchMedico">Dado alterado</param>
+        /// <param name="patchEspecialidade">Dado alterado</param>
         /// <returns>Especialidade alterada</returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchEspecialidade)
         {
             if (patchEspecialidade == null)
             {
-                return BadRequest();
+                return BadRequest();    // resposta de erro padrão
             }
 
             // Temos que buscar o objeto
@@ -176,10 +176,10 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return NotFound(new
                 {
-                    Message = "Especialidade não encontrada !!"
+                    Message = "Especialidade não encontrada !!"    // mensagem de erro
                 });
             }
-
+            //Altera parcialmente a especialidade!
             repositorio.AlterarParcialmente(patchEspecialidade, especialidade);
             return Ok(especialidade);
         }
@@ -196,12 +196,12 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var busca = repositorio.BuscarPorId(id);
+                var busca = repositorio.BuscarPorId(id);     //deleta uma especialidade digitando o id dela
                 if (busca == null)
                 {
                     return NotFound(new
                     {
-                        Message = "Especialidade não encontrada !!"
+                        Message = "Especialidade não encontrada !!"    // mensagem de erro
                     });
                 }
 
@@ -214,7 +214,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!!",
+                    Error = "Falha na transação!!",    // mensagem de erro
                     Message = e.Message,
                 });
             }

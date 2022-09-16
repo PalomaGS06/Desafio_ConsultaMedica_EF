@@ -21,22 +21,23 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Alterar(Medico medico)
         {
-            ctx.Entry(medico).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(medico).State = EntityState.Modified; // mostra o estado da consulta e utiliza-se a função EntityState
+                                                           // para fazer a alteração
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public void AlterarParcialmente(JsonPatchDocument patchMedico, Medico medico)
         {
-            patchMedico.ApplyTo(medico);
+            patchMedico.ApplyTo(medico);   // aplicar o Patch no atributo medico
             ctx.Entry(medico).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public Medico BuscarPorId(int id)
         {
             var medicoId = ctx.Medico
-               .Include(e => e.IdEspecialidade)
-               .Include(u => u.IdUsuario)
+               .Include(e => e.IdEspecialidade) //inclui o campo IdEspecialidade
+               .Include(u => u.IdUsuario)   //inclui o campo  IdUsuario
                .FirstOrDefault(m => m.Id == id);
 
             return medicoId;
@@ -44,25 +45,26 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Excluir(Medico medico)
         {
-            ctx.Medico.Remove(medico);
-            var usuarioM = ctx.Usuarios.Find(medico.IdUsuario);
-            ctx.Usuarios.Remove(usuarioM);
-            ctx.SaveChanges();
+            ctx.Medico.Remove(medico);    //remove o atributo no parâmetro da função Remove
+            var usuarioM = ctx.Usuarios.Find(medico.IdUsuario); // a função Find vai procurar em qual
+                                                                // usuario o medico selecionado para a exclusão está
+            ctx.Usuarios.Remove(usuarioM); //remove o usuario medico
+            ctx.SaveChanges();  // salva as alterações
         }
 
         public Medico Inserir(Medico medico)
         {
-            ctx.Medico.Add(medico);
-            ctx.SaveChanges();
-            return medico;
+            ctx.Medico.Add(medico); // adiciona o que foi inserido dentro da entidade
+            ctx.SaveChanges();  // salva as alterações
+            return medico;  // retorna o resultado
         }
 
         public ICollection<Medico> ListarTodos()
         {
             var consultas = ctx.Medico
-                    .Include(c => c.Consulta)
-                    .Include(u => u.Usuario)
-                    .ToList();
+                    .Include(c => c.Consulta) // inclui a classe Consulta para ser exibida
+                    .Include(u => u.Usuario)  // inclui a classe Usuario para ser exibido
+                    .ToList(); // lista os itens existentes
 
             return consultas;
         }

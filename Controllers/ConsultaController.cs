@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConsultaMedicaVet.Controllers
 {
+    // rota da API
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultaController : ControllerBase
@@ -31,7 +32,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
-                var retorno = repositorio.Inserir(consulta);
+                var retorno = repositorio.Inserir(consulta); // retorno dos dados inseridos
                 return Ok(retorno);
 
             }
@@ -40,7 +41,7 @@ namespace ConsultaMedicaVet.Controllers
                 // return BadRequest(e.Message);            
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -58,7 +59,7 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var retorno = repositorio.ListarTodas();
+                var retorno = repositorio.ListarTodas();  // retorna a lista de todas consultas
                 return Ok(retorno);
 
             }
@@ -66,7 +67,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha de transação !!",
+                    Error = "Falha de transação !!",  // mensagem de erro
                     Message = e.Message,
                 });
 
@@ -82,16 +83,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <param name="id">Dados da consulta selecionada</param>
         /// <returns>Consulta listada pelo ID</returns>
         [HttpGet("{id}")]
-        public IActionResult BuscarConsultaPorID(int id)
+        public IActionResult BuscarConsultaPorID(int id)  
         {
             try
             {
-                var retorno = repositorio.BuscarPorId(id);
-                if (retorno == null)
+                var retorno = repositorio.BuscarPorId(id);  // retorna a lista dos dados da consulta buscada pelo Id
+                if (retorno == null)  // caso o id for igual a 0 
                 {
                     return NotFound(new
                     {
-                        Message = "Consulta não achada na lista !!"
+                        Message = "Consulta não achada na lista !!"  // mensagem de erro
                     });
                 }
 
@@ -102,7 +103,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!",   // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -123,32 +124,32 @@ namespace ConsultaMedicaVet.Controllers
             {
 
                 //Verificar se os ids batem!
-                if (id != consulta.Id)
+                if (id != consulta.Id)   // caso o id for diferente de um Id existente 
                 {
                     return BadRequest();
                 }
 
                 //Verificar se o id existe no banco!
                 var retorno = repositorio.BuscarPorId(id);
-                if (retorno == null)
+                if (retorno == null)   // caso o id for igual a 0 
                 {
                     return NotFound(new
                     {
-                        Message = "Consulta não encontrada !!"
+                        Message = "Consulta não encontrada !!"  // mensagem de erro
                     });
                 }
 
                 //Altera efetivamente a consulta!
                 repositorio.Alterar(consulta);
 
-                return NoContent();
+                return NoContent();  // caso contrário, o código 404 de sucesso será exibido
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",
+                    Error = "Falha na transação !!", // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -168,11 +169,11 @@ namespace ConsultaMedicaVet.Controllers
         {
             if (patchConsulta == null)
             {
-                return BadRequest();
+                return BadRequest();     // resposta de erro padrão
             }
 
             // Temos que buscar o objeto
-            var consulta = repositorio.BuscarPorId(id); //consulta encontrada
+            var consulta = repositorio.BuscarPorId(id);  //consulta encontrada
             if (consulta == null)
             {
                 return NotFound(new
@@ -181,8 +182,9 @@ namespace ConsultaMedicaVet.Controllers
                 });
             }
 
+            //Altera parcialmente a consulta!
             repositorio.AlterarParcialmente(patchConsulta, consulta);
-            return Ok(consulta);
+            return Ok(consulta); // retorna a consulta alterada
         }
 
         //verbo DELETE - Excluir
@@ -197,12 +199,12 @@ namespace ConsultaMedicaVet.Controllers
         {
             try
             {
-                var busca = repositorio.BuscarPorId(id);
+                var busca = repositorio.BuscarPorId(id);     //deleta uma consulta digitando o id dela
                 if (busca == null)
                 {
                     return NotFound(new
                     {
-                        Message = "Consulta não encontrada !!"
+                        Message = "Consulta não encontrada !!"  // mensagem de erro
                     });
                 }
 
@@ -215,7 +217,7 @@ namespace ConsultaMedicaVet.Controllers
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!!",
+                    Error = "Falha na transação!!",  // mensagem de erro
                     Message = e.Message,
                 });
             }
