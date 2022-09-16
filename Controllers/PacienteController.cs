@@ -41,7 +41,7 @@ namespace ConsultaMedicaVet.Controllers
        
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação!",  // mensagem de erro
+                    Error = "IdTipoUsuario deve ser igual a 2!",  // mensagem de erro
                     Message = e.Message,
                 });
             }

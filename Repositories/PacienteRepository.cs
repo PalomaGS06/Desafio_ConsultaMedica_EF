@@ -18,8 +18,10 @@ namespace ConsultaMedicaVet.Repositories
         }
         public void Alterar(Paciente paciente)
         {
-            ctx.Entry(paciente).State = EntityState.Modified;   // mostra o estado da consulta e utiliza-se a função EntityState
-                                                                // para fazer a alteração
+
+            // para fazer a alteração
+
+            ctx.Update(paciente);
             ctx.SaveChanges();  // salva as alterações
         }
 
@@ -33,7 +35,7 @@ namespace ConsultaMedicaVet.Repositories
         public Paciente BuscarPorId(int id)
         {
             var pacienteId = ctx.Paciente 
-               .Include(u => u.IdUsuario)   //inclui o campo  IdUsuario
+               .Include(u => u.Usuario)   //inclui o campo  IdUsuario
                .FirstOrDefault(m => m.Id == id);
 
             return pacienteId;

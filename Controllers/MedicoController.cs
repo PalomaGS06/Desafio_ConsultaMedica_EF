@@ -125,7 +125,10 @@ namespace ConsultaMedicaVet.Controllers
                 //Verificar se os ids batem!
                 if (id != medico.Id)    // caso o id for diferente de um Id existente
                 {
-                    return BadRequest();        // resposta de erro padrão
+                    return BadRequest(new
+                    {
+                        message = "O id informado é diferente do id inserido no Json!"
+                    });        // resposta de erro padrão
                 }
 
                 //Verificar se o id existe no banco!

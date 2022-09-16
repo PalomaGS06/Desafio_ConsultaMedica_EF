@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ConsultaMedicaVet.Models
 {
@@ -17,7 +18,11 @@ namespace ConsultaMedicaVet.Models
         [ForeignKey("TipoUsuario")]   // foreign key/ chave estrangeira IdTipoUsuario
         public int IdTipoUsuario { get; set; }
         public TipoUsuario TipoUsuario { get; set; }   // classe TipoUsuario como objeto
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public virtual ICollection<Medico> Medico { get; set; }   // lista de Medicos
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public virtual ICollection<Paciente> Paciente { get; set; }  // lista de Pacientes
     }
 }

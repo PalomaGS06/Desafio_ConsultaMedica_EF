@@ -19,8 +19,10 @@ namespace ConsultaMedicaVet.Repositories
 
         public void Alterar(Usuario usuario)
         {
-            ctx.Entry(usuario).State = EntityState.Modified; // mostra o estado da consulta e utiliza-se a função EntityState
-                                                             // para fazer a alteração
+             
+            // para fazer a alteração
+
+            ctx.Update(usuario);
             ctx.SaveChanges();  // salva as alterações
         }
 

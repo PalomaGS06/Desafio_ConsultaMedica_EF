@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ConsultaMedicaVet.Models
 {
@@ -12,6 +13,7 @@ namespace ConsultaMedicaVet.Models
         [Required]  // campo obrigatório
         public string Categoria { get; set; }
 
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public virtual ICollection<Medico> Medico { get; set; }  // lista de médicos 
 
 
